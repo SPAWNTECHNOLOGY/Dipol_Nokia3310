@@ -24,7 +24,7 @@
 
 1. Клонируйте репозиторий:
 ```bash
-git clone [https://github.com/username/DipolNokia3310.git](https://github.com/SPAWNTECHNOLOGY/Dipol_Nokia3310.git)
+git clone https://github.com/SPAWNTECHNOLOGY/Dipol_Nokia3310.git
 ```
 
 2. Перейдите в директорию проекта:

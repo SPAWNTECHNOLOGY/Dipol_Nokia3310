@@ -1,0 +1,287 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:DipolNokia3310.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="650"
+        x:Class="DipolNokia3310.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Icon="/Assets/avalonia-logo.ico"
+        Width="350" Height="650"
+        Background="#F0F0F0"
+        Title="DipolNokia3310">
+
+	<Design.DataContext>
+		<vm:MainWindowViewModel/>
+	</Design.DataContext>
+
+	<Window.Styles>
+		<Style Selector="Button.KeypadButton">
+			<Setter Property="Width" Value="60"/>
+			<Setter Property="Height" Value="60"/>
+			<Setter Property="Margin" Value="4"/>
+			<Setter Property="Background" Value="#E0E0E0"/>
+			<Setter Property="Foreground" Value="Black"/>
+			<Setter Property="FontSize" Value="14"/>
+			<Setter Property="FontWeight" Value="Bold"/>
+			<Setter Property="HorizontalContentAlignment" Value="Center"/>
+			<Setter Property="VerticalContentAlignment" Value="Center"/>
+			<Setter Property="CornerRadius" Value="30"/>
+			<Setter Property="BorderBrush" Value="#BBBBBB"/>
+			<Setter Property="BorderThickness" Value="1"/>
+		</Style>
+		<Style Selector="Button.NavigationButton">
+			<Setter Property="Width" Value="40"/>
+			<Setter Property="Height" Value="30"/>
+			<Setter Property="Margin" Value="4"/>
+			<Setter Property="Background" Value="#D0D0D0"/>
+			<Setter Property="Foreground" Value="Black"/>
+			<Setter Property="FontSize" Value="14"/>
+			<Setter Property="HorizontalContentAlignment" Value="Center"/>
+			<Setter Property="VerticalContentAlignment" Value="Center"/>
+			<Setter Property="CornerRadius" Value="5"/>
+			<Setter Property="BorderBrush" Value="#AAAAAA"/>
+			<Setter Property="BorderThickness" Value="1"/>
+		</Style>
+	</Window.Styles>
+
+	<!-- Телефон Nokia 3310 -->
+	<Border Background="#D0D0D0"
+            BorderBrush="#909090"
+            BorderThickness="2"
+            CornerRadius="15"
+            Width="320"
+            Height="600"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Center">
+
+		<Grid RowDefinitions="Auto,Auto,Auto,Auto,*">
+			<!-- Верхняя часть телефона с антенной -->
+			<Grid Grid.Row="0" Height="30">
+				<Ellipse Fill="#A0A0A0"
+                       Width="12"
+                       Height="12"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Top"
+                       Margin="0,5,0,0"/>
+			</Grid>
+
+			<!-- Экран -->
+			<Border Grid.Row="1"
+                  Background="#9AAA80"
+                  BorderBrush="#505050"
+                  BorderThickness="2"
+                  CornerRadius="5"
+                  Width="220"
+                  Height="140"
+                  Margin="0,10,0,20">
+				<Grid RowDefinitions="Auto,*,Auto">
+					<!-- Верхняя строка экрана -->
+					<Grid Grid.Row="0" Height="30">
+						<TextBlock Text="17:38"
+                                 FontSize="14"
+                                 FontWeight="SemiBold"
+                                 Foreground="#202020"
+                                 HorizontalAlignment="Center"
+                                 VerticalAlignment="Center"/>
+
+						<!-- Вертикальные линии слева и справа от экрана для имитации рамки -->
+						<Rectangle Fill="#505050"
+                                 Width="1"
+                                 Height="20"
+                                 HorizontalAlignment="Left"
+                                 VerticalAlignment="Center"
+                                 Margin="8,0,0,0"/>
+
+						<Rectangle Fill="#505050"
+                                 Width="1"
+                                 Height="20"
+                                 HorizontalAlignment="Right"
+                                 VerticalAlignment="Center"
+                                 Margin="0,0,8,0"/>
+					</Grid>
+
+					<!-- Основная область экрана -->
+					<Grid Grid.Row="1" Margin="10,0,10,0">
+						<TextBlock Text="{Binding DisplayText}"
+                                 FontSize="16"
+                                 Foreground="#202020"
+                                 TextWrapping="Wrap"
+                                 HorizontalAlignment="Center"
+                                 VerticalAlignment="Center"
+								 Margin="0,0,0,40"/>
+
+						<TextBlock Text="{Binding ResultText}"
+                                 FontSize="14"
+                                 Foreground="#303030"
+                                 TextWrapping="Wrap"
+                                 HorizontalAlignment="Center"
+                                 VerticalAlignment="Bottom"
+                                 Margin="0,0,0,15"/>
+
+						<!-- Для отладки: показываем последовательность ввода -->
+						<TextBlock Text="{Binding InputSequence}"
+                                 FontSize="10"
+                                 Foreground="#404040"
+                                 TextWrapping="Wrap"
+                                 HorizontalAlignment="Left"
+                                 VerticalAlignment="Bottom"
+                                 Margin="0,0,0,0"
+                                 Opacity="0.6"/>
+					</Grid>
+
+					<!-- Нижняя строка экрана -->
+					<Grid Grid.Row="2" ColumnDefinitions="*,*" Height="30">
+						<TextBlock Grid.Column="0"
+                                 Text="Menu"
+                                 FontSize="12"
+                                 Foreground="#202020"
+                                 HorizontalAlignment="Center"
+                                 VerticalAlignment="Center"/>
+
+						<TextBlock Grid.Column="1"
+                                 Text=""
+                                 FontSize="12"
+                                 Foreground="#202020"
+                                 HorizontalAlignment="Center"
+                                 VerticalAlignment="Center"/>
+
+						<!-- Вертикальные линии слева и справа от экрана для имитации рамки -->
+						<Rectangle Fill="#505050"
+                                 Width="1"
+                                 Height="20"
+                                 HorizontalAlignment="Left"
+                                 VerticalAlignment="Center"
+                                 Margin="8,0,0,0"/>
+
+						<Rectangle Fill="#505050"
+                                 Width="1"
+                                 Height="20"
+                                 HorizontalAlignment="Right"
+                                 Grid.Column="1"
+                                 VerticalAlignment="Center"
+                                 Margin="0,0,8,0"/>
+					</Grid>
+				</Grid>
+			</Border>
+
+			<!-- Навигационные кнопки -->
+			<Grid Grid.Row="2" Margin="0,0,0,10">
+				<!-- Центральная большая кнопка навигации -->
+				<Ellipse Fill="#D8D8D8"
+                       Stroke="#B0B0B0"
+                       StrokeThickness="1"
+                       Width="110"
+                       Height="60"
+                       HorizontalAlignment="Center"/>
+
+				<!-- Центральная кнопка сброса (вместо OK) -->
+				<Button Content="Reset"
+                      Command="{Binding ClearCommand}"
+                      Width="60"
+                      Height="40"
+                      Background="#A0C0E0"
+                      Foreground="Black"
+                      FontSize="12"
+                      FontWeight="Bold"
+                      HorizontalAlignment="Center"
+                      VerticalAlignment="Center"
+                      CornerRadius="4"
+                      BorderBrush="#80A0C0"
+                      BorderThickness="1"/>
+			</Grid>
+
+			<!-- Разделительная линия -->
+			<Rectangle Grid.Row="3"
+                     Fill="#B0B0B0"
+                     Height="1"
+                     Margin="20,5,20,15"/>
+
+			<!-- Клавиатура -->
+			<Grid Grid.Row="4"
+                RowDefinitions="Auto,Auto,Auto,Auto"
+                ColumnDefinitions="*,*,*"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Top"
+                Margin="0,10,0,0">
+
+				<!-- Ряд 1 -->
+				<Button Grid.Row="0" Grid.Column="0"
+                      Classes="KeypadButton"
+                      Content="1&#10;▪"
+                      Command="{Binding KeyPressCommand}"
+                      CommandParameter="1"/>
+
+				<Button Grid.Row="0" Grid.Column="1"
+                      Classes="KeypadButton"
+                      Content="2&#10;abc"
+                      Command="{Binding KeyPressCommand}"
+                      CommandParameter="2"/>
+
+				<Button Grid.Row="0" Grid.Column="2"
+                      Classes="KeypadButton"
+                      Content="3&#10;def"
+                      Command="{Binding KeyPressCommand}"
+                      CommandParameter="3"/>
+
+				<!-- Ряд 2 -->
+				<Button Grid.Row="1" Grid.Column="0"
+                      Classes="KeypadButton"
+                      Content="4&#10;ghi"
+                      Command="{Binding KeyPressCommand}"
+                      CommandParameter="4"/>
+
+				<Button Grid.Row="1" Grid.Column="1"
+                      Classes="KeypadButton"
+                      Content="5&#10;jkl"
+                      Command="{Binding KeyPressCommand}"
+                      CommandParameter="5"/>
+
+				<Button Grid.Row="1" Grid.Column="2"
+                      Classes="KeypadButton"
+                      Content="6&#10;mno"
+                      Command="{Binding KeyPressCommand}"
+                      CommandParameter="6"/>
+
+				<!-- Ряд 3 -->
+				<Button Grid.Row="2" Grid.Column="0"
+                      Classes="KeypadButton"
+                      Content="7&#10;pqrs"
+                      Command="{Binding KeyPressCommand}"
+                      CommandParameter="7"/>
+
+				<Button Grid.Row="2" Grid.Column="1"
+                      Classes="KeypadButton"
+                      Content="8&#10;tuv"
+                      Command="{Binding KeyPressCommand}"
+                      CommandParameter="8"/>
+
+				<Button Grid.Row="2" Grid.Column="2"
+                      Classes="KeypadButton"
+                      Content="9&#10;wxyz"
+                      Command="{Binding KeyPressCommand}"
+                      CommandParameter="9"/>
+
+				<!-- Ряд 4 -->
+				<Button Grid.Row="3" Grid.Column="0"
+                      Classes="KeypadButton"
+                      Content="*"
+                      Command="{Binding KeyPressCommand}"
+                      CommandParameter="*"/>
+
+				<Button Grid.Row="3" Grid.Column="1"
+                      Classes="KeypadButton"
+                      Content="0&#10;_"
+                      Command="{Binding KeyPressCommand}"
+                      CommandParameter="0"/>
+
+				<Button Grid.Row="3" Grid.Column="2"
+                      Classes="KeypadButton"
+                      Content="#&#10;Send"
+                      Background="#A0E0A0"
+                      BorderBrush="#80C080"
+                      Command="{Binding SendCommand}"/>
+			</Grid>
+		</Grid>
+	</Border>
+</Window>
